@@ -11,11 +11,14 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     private Rigidbody rb;
     public float jumpForce;
+    public Renderer rend;
 
     // Start is called before the first frame update
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rend = GetComponent<Renderer>();
+        rend.material.shader = Shader.Find("_Color");
     }
 
     // Update is called once per frame
@@ -28,6 +31,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.S))
         {
             transform.Translate(Vector3.back * (moveSpeed * Time.deltaTime));
+            rend.material.SetColor("_Color", Color.green);
         }
         if (Input.GetKey(KeyCode.A))
         {
